@@ -22,6 +22,8 @@
 
 package me.silverwolfg11.maptowny;
 
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import com.palmergames.bukkit.towny.Towny;
 import me.silverwolfg11.maptowny.events.MapReloadEvent;
 import me.silverwolfg11.maptowny.listeners.TownClaimListener;
@@ -44,6 +46,8 @@ public final class MapTowny extends JavaPlugin implements MapTownyPlugin {
     private TownyLayerManager layerManager;
     private MapPlatform mapPlatform;
     private MapConfig config;
+    
+    private static TaskScheduler scheduler;
 
     @Override
     public void onEnable() {
@@ -53,6 +57,8 @@ public final class MapTowny extends JavaPlugin implements MapTownyPlugin {
             setEnabled(false);
             return;
         }
+
+        scheduler = UniversalScheduler.getScheduler(this);
 
         // Plugin startup logic
         try {
@@ -201,14 +207,18 @@ public final class MapTowny extends JavaPlugin implements MapTownyPlugin {
 
     public void reload() throws IOException {
         config = MapConfig.loadConfig(getDataFolder(), getLogger());
-        Bukkit.getScheduler().cancelTasks(this);
+        MapTowny.getScheduler().cancelTasks(this);
         layerManager.close();
         layerManager = new TownyLayerManager(this, mapPlatform);
         Bukkit.getPluginManager().callEvent(new MapReloadEvent()); // API Event
         new RenderTownsTask(this).runTaskTimer(this, 0, config.getUpdatePeriod() * 20L * 60);
     }
 
+    public static TaskScheduler getScheduler() {
+        return scheduler;
+    }
+
     public void async(Runnable run) {
-        Bukkit.getScheduler().runTaskAsynchronously(this, run);
+        MapTowny.getScheduler().runTaskAsynchronously(this, run);
     }
 }

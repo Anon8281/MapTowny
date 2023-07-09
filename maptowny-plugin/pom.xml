@@ -66,6 +66,7 @@
                         <includes>
                             <include>com.github.silverwolfg11:*</include>
                             <include>me.silverwolfg11:maptowny-*</include>
+                            <include>com.github.Anon8281:UniversalScheduler</include>
                         </includes>
                         <excludes>
                             <exclude>com.github.TownyAdvanced:*</exclude>
@@ -75,6 +76,10 @@
                         <relocation>
                             <pattern>me.Silverwolfg11.CommentConfig</pattern>
                             <shadedPattern>me.silverwolfg11.maptowny.commentconfig</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.github.Anon8281.universalScheduler</pattern>
+                            <shadedPattern>me.silverwolfg11.maptowny.universalScheduler</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

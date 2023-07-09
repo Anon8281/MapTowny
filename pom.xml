@@ -105,6 +105,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.github.Anon8281</groupId>
+            <artifactId>UniversalScheduler</artifactId>
+            <version>0.1.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.github.TownyAdvanced</groupId>
             <artifactId>Towny</artifactId>
             <version>0.97.1.0</version>

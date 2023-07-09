@@ -483,7 +483,7 @@ public class TownyLayerManager implements LayerManager {
 
         if (!Bukkit.isPrimaryThread()) {
             // Can only get TRE from sync thread
-            Bukkit.getScheduler().runTask(plugin, renderTown);
+            MapTowny.getScheduler().runTask(plugin, renderTown);
         }
         else {
             renderTown.run();
@@ -502,7 +502,7 @@ public class TownyLayerManager implements LayerManager {
 
         if (!Bukkit.isPrimaryThread()) {
             // Can only get TRE from sync thread
-            Bukkit.getScheduler().runTask(plugin, renderTowns);
+            MapTowny.getScheduler().runTask(plugin, renderTowns);
         }
         else {
             renderTowns.run();
